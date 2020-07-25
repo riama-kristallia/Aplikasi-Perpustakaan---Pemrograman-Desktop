@@ -9,6 +9,7 @@
  * @author riamkrist
  */
 
+
 import javax.swing.Timer;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
@@ -31,7 +32,11 @@ public class splashscreen extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(halamanUtama.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+       
+     
+       
+       this.setTitle("Aplikasi Perpustakaan");
+       
         t = new Timer(100, (ActionEvent e) -> {
             count +=5;
             jProgressBar1.setValue(count);
@@ -46,6 +51,7 @@ public class splashscreen extends javax.swing.JFrame {
         });
         t.start();
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -62,33 +68,40 @@ public class splashscreen extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(180, 226, 242));
 
-        jPanel1.setBackground(new java.awt.Color(175, 216, 226));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jProgressBar1.setFont(new java.awt.Font("Tw Cen MT", 1, 18)); // NOI18N
         jProgressBar1.setForeground(new java.awt.Color(255, 51, 51));
         jProgressBar1.setBorderPainted(false);
         jProgressBar1.setStringPainted(true);
-        jPanel1.add(jProgressBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, 560, 47));
+        jPanel1.add(jProgressBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 560, 47));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/library.png"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 500, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 500, -1));
 
         jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 48)); // NOI18N
         jLabel2.setText("Perpustakaan");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 340, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 20, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(133, 133, 133))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         pack();
