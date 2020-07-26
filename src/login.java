@@ -36,7 +36,7 @@ public class login extends javax.swing.JFrame {
 
         
         try {
-            BufferedImage beam = ImageIO.read(getClass().getResource("library.jpg"));
+            BufferedImage beam = ImageIO.read(getClass().getResource("library.png"));
              setIconImage(beam); 
         } catch (IOException ex) {
             Logger.getLogger(splashscreen.class.getName()).log(Level.SEVERE, null, ex);
@@ -206,15 +206,11 @@ public class login extends javax.swing.JFrame {
     }//GEN-LAST:event_txtUsernameMouseClicked
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-// TODO add your handling code here:
-        
 
-//        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
-        
  
             try{
-                        String sql = "SELECT * FROM login WHERE username='"+
-                                txtUsername.getText() +"'";
+                    String sql = "SELECT * FROM login WHERE username='"+
+                        txtUsername.getText() +"'";
                         Statement stmt = conn.createStatement();
                         ResultSet rs = stmt.executeQuery(sql);
 
@@ -231,11 +227,8 @@ public class login extends javax.swing.JFrame {
                         }
                     } catch (SQLException e){
                         System.out.println(e.getMessage());
-                    }
-        
-
-
-        
+                }
+                
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
