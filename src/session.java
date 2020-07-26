@@ -10,7 +10,7 @@
  * @author arija
  */
 public class session {
-     private static String user,id;
+    private static String user,id;
     
     public static void setuser(String user){
         session.user = user;

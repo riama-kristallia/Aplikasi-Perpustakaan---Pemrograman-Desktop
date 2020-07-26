@@ -30,7 +30,7 @@ public class InputPeminjaman extends javax.swing.JFrame {
      */
     public InputPeminjaman(){
         initComponents();
-        txtnm.setEditable(false);
+        txtNama.setEditable(false);
         txtjdl.setEditable(false);
    
         try {
@@ -52,18 +52,18 @@ public class InputPeminjaman extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
-        txtjmlh = new javax.swing.JTextField();
-        txtnpm = new javax.swing.JTextField();
-        txtnm = new javax.swing.JTextField();
-        txtidbk = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        txtJumlah = new javax.swing.JTextField();
+        txtNPM = new javax.swing.JTextField();
+        txtNama = new javax.swing.JTextField();
+        txtIDbuku = new javax.swing.JTextField();
+        btSubmit = new javax.swing.JButton();
+        btReset = new javax.swing.JButton();
         txtjdl = new javax.swing.JTextField();
         tgl = new com.toedter.calendar.JDateChooser();
         tglbalik = new com.toedter.calendar.JDateChooser();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        btKembali = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
 
@@ -72,73 +72,78 @@ public class InputPeminjaman extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(95, 190, 201));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtjmlh.setText("Jumlah");
-        txtjmlh.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtJumlah.setText("Jumlah");
+        txtJumlah.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtjmlhMouseClicked(evt);
+                txtJumlahMouseClicked(evt);
             }
         });
-        txtjmlh.addActionListener(new java.awt.event.ActionListener() {
+        txtJumlah.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtjmlhActionPerformed(evt);
+                txtJumlahActionPerformed(evt);
             }
         });
-        txtjmlh.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtJumlah.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtjmlhKeyTyped(evt);
+                txtJumlahKeyTyped(evt);
             }
         });
-        jPanel2.add(txtjmlh, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 340, 470, 30));
+        jPanel2.add(txtJumlah, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 340, 470, 30));
 
-        txtnpm.setText("NPM");
-        txtnpm.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtNPM.setText("NPM");
+        txtNPM.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtnpmMouseClicked(evt);
+                txtNPMMouseClicked(evt);
             }
         });
-        txtnpm.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtNPM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNPMActionPerformed(evt);
+            }
+        });
+        txtNPM.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtnpmKeyReleased(evt);
+                txtNPMKeyReleased(evt);
             }
         });
-        jPanel2.add(txtnpm, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 470, 30));
+        jPanel2.add(txtNPM, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 470, 30));
 
-        txtnm.setText("Nama");
-        txtnm.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtNama.setText("Nama");
+        txtNama.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtnmKeyReleased(evt);
+                txtNamaKeyReleased(evt);
             }
         });
-        jPanel2.add(txtnm, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, 470, 30));
+        jPanel2.add(txtNama, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, 470, 30));
 
-        txtidbk.setText("Id Buku");
-        txtidbk.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtIDbuku.setText("Id Buku");
+        txtIDbuku.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtidbkMouseClicked(evt);
+                txtIDbukuMouseClicked(evt);
             }
         });
-        txtidbk.addActionListener(new java.awt.event.ActionListener() {
+        txtIDbuku.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtidbkActionPerformed(evt);
+                txtIDbukuActionPerformed(evt);
             }
         });
-        txtidbk.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtIDbuku.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtidbkKeyReleased(evt);
+                txtIDbukuKeyReleased(evt);
             }
         });
-        jPanel2.add(txtidbk, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 250, 470, 30));
+        jPanel2.add(txtIDbuku, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 250, 470, 30));
 
-        jButton1.setText("Submit");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btSubmit.setText("Submit");
+        btSubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btSubmitActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 390, -1, -1));
+        jPanel2.add(btSubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 390, -1, -1));
 
-        jButton2.setText("Reset");
-        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 430, -1, -1));
+        btReset.setText("Reset");
+        jPanel2.add(btReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 430, -1, -1));
 
         txtjdl.setText("Judul");
         jPanel2.add(txtjdl, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, 470, 30));
@@ -167,15 +172,15 @@ public class InputPeminjaman extends javax.swing.JFrame {
         jLabel2.setText("Tanggal Pinjam");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 380, -1, -1));
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/back.png"))); // NOI18N
-        jButton3.setBorderPainted(false);
-        jButton3.setContentAreaFilled(false);
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btKembali.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/back.png"))); // NOI18N
+        btKembali.setBorderPainted(false);
+        btKembali.setContentAreaFilled(false);
+        btKembali.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btKembaliActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 380, -1, -1));
+        jPanel2.add(btKembali, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 380, -1, -1));
 
         jPanel1.setBackground(new java.awt.Color(82, 156, 170));
 
@@ -218,42 +223,42 @@ public class InputPeminjaman extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtnpmMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtnpmMouseClicked
-txtnpm.setText("");
+    private void txtNPMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNPMMouseClicked
+        txtNPM.setText("");
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtnpmMouseClicked
+    }//GEN-LAST:event_txtNPMMouseClicked
 
-    private void txtidbkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtidbkMouseClicked
-txtidbk.setText("");
+    private void txtIDbukuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtIDbukuMouseClicked
+        txtIDbuku.setText("");
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtidbkMouseClicked
+    }//GEN-LAST:event_txtIDbukuMouseClicked
 
-    private void txtnmKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnmKeyReleased
+    private void txtNamaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNamaKeyReleased
 
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtnmKeyReleased
+    }//GEN-LAST:event_txtNamaKeyReleased
 
-    private void txtnpmKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnpmKeyReleased
+    private void txtNPMKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNPMKeyReleased
         try{
-            String query = "SELECT nama FROM mahasiswa where npm = '"+txtnpm.getText()+"'";
+            String query = "SELECT nama FROM mahasiswa where npm = '"+txtNPM.getText()+"'";
             Connection conn = Koneksi.connectDB();
             Statement stm = conn.createStatement();
             ResultSet data = stm.executeQuery(query);
 
             if(data.next()){
-                txtnm.setText(data.getString("nama"));
+                txtNama.setText(data.getString("nama"));
             }
             else{
-                txtnm.setText("Nama");  
+                txtNama.setText("Nama");  
             }
         } catch(Exception b){
             JOptionPane.showMessageDialog(null, b.getMessage());
         }
-    }//GEN-LAST:event_txtnpmKeyReleased
+    }//GEN-LAST:event_txtNPMKeyReleased
 
-    private void txtidbkKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtidbkKeyReleased
+    private void txtIDbukuKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIDbukuKeyReleased
         try{
-            String query = "SELECT judul FROM buku where id_buku = '"+txtidbk.getText()+"'";
+            String query = "SELECT judul FROM buku where id_buku = '"+txtIDbuku.getText()+"'";
             Connection conn = Koneksi.connectDB();
             Statement stm = conn.createStatement();
             ResultSet data = stm.executeQuery(query);
@@ -267,22 +272,22 @@ txtidbk.setText("");
         } catch(Exception b){
             JOptionPane.showMessageDialog(null, b.getMessage());
         }
-    }//GEN-LAST:event_txtidbkKeyReleased
+    }//GEN-LAST:event_txtIDbukuKeyReleased
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSubmitActionPerformed
         if(tgl.getDate().equals("")&&tglbalik.getDate().equals("")){
-            JOptionPane.showMessageDialog(null,"Tidak Boleh Ada yang kosong");
+            JOptionPane.showMessageDialog(null,"Masih ada data kosong");
         } else {
             try{
                 String idbuku;
-                idbuku=txtidbk.getText();
+                idbuku=txtIDbuku.getText();
                 String query = "SELECT*FROM buku where id_buku = '"+idbuku+"'";
                 Connection conn = Koneksi.connectDB();
                 Statement stm = conn.createStatement();
                 ResultSet data = stm.executeQuery(query);
                 
                 while(data.next()){
-                    String jmlh = txtjmlh.getText();
+                    String jmlh = txtJumlah.getText();
                     String stk = data.getString(7);
                     int stok = Integer.parseInt(stk);
                     int jumlah = Integer.parseInt(jmlh);
@@ -323,9 +328,9 @@ txtidbk.setText("");
                             try {
                                 int denda=0;
                                 String query1 = "INSERT INTO pinjaman VALUES "
-                                        + "('" + idpinjam+"','"+txtnpm.getText() + "','" + txtnm.getText() 
-                                        + "','" + txtidbk.getText() + "','" + txtjdl.getText()  
-                                        + "','" + txtjmlh.getText()+ "','" + pinjam
+                                        + "('" + idpinjam+"','"+txtNPM.getText() + "','" + txtNama.getText() 
+                                        + "','" + txtIDbuku.getText() + "','" + txtjdl.getText()  
+                                        + "','" + txtJumlah.getText()+ "','" + pinjam
                                         + "','" + balik+ "','" + denda+ "','" + "Belum Kembali"+ "')";
                                 java.sql.Connection kon1 = (Connection) Koneksi.connectDB();
                                 java.sql.PreparedStatement mts = kon1.prepareStatement(query1);
@@ -333,19 +338,19 @@ txtidbk.setText("");
                                 JOptionPane.showMessageDialog(null, "Penyimpanan Berhasil");
                                 
                                 try{
-                                    String query2 = "SELECT*FROM buku where id_buku = '"+txtidbk.getText()+"'";
+                                    String query2 = "SELECT*FROM buku where id_buku = '"+txtIDbuku.getText()+"'";
                                     Connection conn3 = Koneksi.connectDB();
                                     Statement st = conn3.createStatement();
                                     ResultSet data2 = st.executeQuery(query2);
                                     
                                     while(data2.next()){
                                         int jumlah1= Integer.parseInt(data2.getString(7));
-                                        int jumlahpinjam = Integer.parseInt(txtjmlh.getText());
+                                        int jumlahpinjam = Integer.parseInt(txtJumlah.getText());
                                         int total = jumlah1-jumlahpinjam;
                                         
                                         try {
                                             String sql3 ="UPDATE buku SET stok = '"+total
-                                                    +"' WHERE id_buku = '"+txtidbk.getText()+"'";
+                                                    +"' WHERE id_buku = '"+txtIDbuku.getText()+"'";
                                             Connection conn4 = Koneksi.connectDB();
                                             PreparedStatement pst=conn4.prepareStatement(sql3);
                                             pst.execute();
@@ -374,19 +379,19 @@ txtidbk.setText("");
                 JOptionPane.showMessageDialog(null,b.getMessage());
             }
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btSubmitActionPerformed
 
-    private void txtjmlhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtjmlhActionPerformed
+    private void txtJumlahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtJumlahActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtjmlhActionPerformed
+    }//GEN-LAST:event_txtJumlahActionPerformed
 
-    private void txtjmlhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtjmlhMouseClicked
-        txtjmlh.setText(null);
-    }//GEN-LAST:event_txtjmlhMouseClicked
+    private void txtJumlahMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtJumlahMouseClicked
+        txtJumlah.setText(null);
+    }//GEN-LAST:event_txtJumlahMouseClicked
 
-    private void txtidbkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidbkActionPerformed
+    private void txtIDbukuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDbukuActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtidbkActionPerformed
+    }//GEN-LAST:event_txtIDbukuActionPerformed
 
     private void tglPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_tglPropertyChange
 if (tgl.getDate() != null) {
@@ -403,12 +408,12 @@ if (tgl.getDate() != null) {
         }
     }//GEN-LAST:event_tglbalikPropertyChange
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btKembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btKembaliActionPerformed
         new DataPeminjaman().setVisible(true);
         dispose();
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btKembaliActionPerformed
 
-    private void txtjmlhKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtjmlhKeyTyped
+    private void txtJumlahKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtJumlahKeyTyped
         char c = evt.getKeyChar();
         if (! ((Character.isDigit(c) ||
                 (c == KeyEvent.VK_BACK_SPACE) ||
@@ -417,7 +422,11 @@ if (tgl.getDate() != null) {
         {
             evt.consume();
         }
-    }//GEN-LAST:event_txtjmlhKeyTyped
+    }//GEN-LAST:event_txtJumlahKeyTyped
+
+    private void txtNPMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNPMActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNPMActionPerformed
 
     /**
      * @param args the command line arguments
@@ -425,9 +434,9 @@ if (tgl.getDate() != null) {
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btKembali;
+    private javax.swing.JButton btReset;
+    private javax.swing.JButton btSubmit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -435,10 +444,10 @@ if (tgl.getDate() != null) {
     private javax.swing.JPanel jPanel2;
     private com.toedter.calendar.JDateChooser tgl;
     private com.toedter.calendar.JDateChooser tglbalik;
-    private javax.swing.JTextField txtidbk;
+    private javax.swing.JTextField txtIDbuku;
+    private javax.swing.JTextField txtJumlah;
+    private javax.swing.JTextField txtNPM;
+    private javax.swing.JTextField txtNama;
     private javax.swing.JTextField txtjdl;
-    private javax.swing.JTextField txtjmlh;
-    private javax.swing.JTextField txtnm;
-    private javax.swing.JTextField txtnpm;
     // End of variables declaration//GEN-END:variables
 }
