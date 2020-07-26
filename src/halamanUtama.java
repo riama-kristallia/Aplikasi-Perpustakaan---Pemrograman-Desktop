@@ -22,9 +22,10 @@ import static javax.swing.JOptionPane.YES_NO_OPTION;
  */
 public class halamanUtama extends javax.swing.JFrame {
 
-    /** Creates new form beranda */
+    /** Creates new form halamanUtama */
     public halamanUtama(){
         initComponents();
+        setnama();
         
         try {
             BufferedImage beam = ImageIO.read(getClass().getResource("library.png"));
@@ -34,6 +35,24 @@ public class halamanUtama extends javax.swing.JFrame {
         }
         
        this.setTitle("Halaman Utama");
+    }
+    
+    private void setnama(){
+        try{
+            String ss = session.getuser();
+            String query = ("SELECT nama FROM "
+                    + "login where username='"+ ss+"' ");
+            Connection conn = Koneksi.connectDB();
+            Statement st = conn.createStatement();
+            ResultSet data = st.executeQuery(query);
+            
+            while(data.next()){
+                lblNama.setText(data.getString("nama"));
+            }
+        }
+        catch(Exception b){
+            JOptionPane.showMessageDialog(null, b.getMessage());
+        }
     }
     
     /** This method is called from within the constructor to
@@ -62,12 +81,17 @@ public class halamanUtama extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        lblNama = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(122, 186, 213));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel2.setBackground(new java.awt.Color(71, 142, 173));
+
         jLabel1.setFont(new java.awt.Font("Tw Cen MT", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(254, 254, 254));
         jLabel1.setText("HALAMAN UTAMA");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -82,14 +106,15 @@ public class halamanUtama extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(0, 17, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, -1, 60));
 
-        jLabel2.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
-        jLabel2.setText("Halo, selamat datang di aplikasi");
+        jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
+        jLabel2.setText("Halo");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, -1, -1));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/buku.png"))); // NOI18N
@@ -177,6 +202,10 @@ public class halamanUtama extends javax.swing.JFrame {
         jLabel10.setText("PEMINJAMAN");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 180, -1, -1));
 
+        lblNama.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
+        lblNama.setText("Nama");
+        jPanel1.add(lblNama, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -196,19 +225,19 @@ public class halamanUtama extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         new DataMahasiswa().setVisible(true);
-dispose();
+        dispose();
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         new DataPeminjaman().setVisible(true);
-dispose();
+        dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         new bukuKembali().setVisible(true);
-dispose();
+        dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -219,17 +248,13 @@ dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-  int pil = JOptionPane.showConfirmDialog 
-  (null, "Yakin Ingin LOGOUT?","",YES_NO_OPTION);
-  
-  if(pil==JOptionPane.YES_OPTION){
-      
-      new login().setVisible(true);
-    dispose();
-    }
-    else{
-    
-    }        // TODO add your handling code here:
+        int pil = JOptionPane.showConfirmDialog(null, "Yakin Ingin Keluar?","",YES_NO_OPTION);
+        if(pil==JOptionPane.YES_OPTION){
+            new login().setVisible(true);
+            dispose();
+        }
+        else{
+        }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
@@ -255,6 +280,7 @@ dispose();
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lblNama;
     // End of variables declaration//GEN-END:variables
 
 }
