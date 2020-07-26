@@ -1,8 +1,13 @@
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,16 +18,17 @@ public class UpdateBuku extends javax.swing.JFrame {
     public UpdateBuku(){
         initComponents();
         setKategori();
-        loadTampil();   
-  /*      try {
-             BufferedImage beam = ImageIO.read(getClass().getResource("library.jpg"));
-             setIconImage(beam); 
+        loadTampil();
+        
+        try {
+            BufferedImage beam = ImageIO.read(getClass().getResource("library.png"));
+            setIconImage(beam); 
         } catch (IOException ex) {
             Logger.getLogger(splashscreen.class.getName()).log(Level.SEVERE, null, ex);
         }
-       this.setTitle("Aplikasi Perpustakaan");
-        */
+        this.setTitle("Aplikasi Perpustakaan");
     }
+    
     private void setKategori(){
         cbKategori.addItem("Kategori");
         cbKategori.addItem("Ilmu Kesehatan");
@@ -30,7 +36,7 @@ public class UpdateBuku extends javax.swing.JFrame {
         cbKategori.addItem("Ilmu Sosial dan Humaniora");
         cbKategori.addItem("Jurnal");
         cbKategori.addItem("Tesis");
-}
+    }
     Connection conn = Koneksi.connectDB();
     private void loadTampil(){
         try{
@@ -48,12 +54,10 @@ public class UpdateBuku extends javax.swing.JFrame {
                 cbKategori.setSelectedItem(data.getString(5));
                 txtDeskripsi.setText(data.getString(6));
                 txtStok.setText(data.getString(7));
-            }
-        
-    }catch(Exception b){
-        
-    }  
-}
+            }    
+        }catch(Exception b){    
+        }  
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -263,11 +267,19 @@ public class UpdateBuku extends javax.swing.JFrame {
         String penerbit     = (String) txtPenerbit.getText();
         String deskripsi    = (String) txtDeskripsi.getText();
         String stok         = (String) txtStok.getText();
-
-        if(kategori.equals("Kategori")){
+        
+        if (judul.equals("")) {
+            JOptionPane.showMessageDialog(null, "Isi Kolom Judul!");
+        } else if (pengarang.equals("")) {
+            JOptionPane.showMessageDialog(null, "Isi Kolom Pengarang!");
+        } else if (penerbit.equals("")){
+            JOptionPane.showMessageDialog(null, "Isi Kolom Penerbit!");
+        } else if (deskripsi.equals("")) {
+            JOptionPane.showMessageDialog(null, "Isi Kolom Deskripsi!");
+        } else if (kategori.equals("Kategori")) {
             JOptionPane.showMessageDialog(null, "Pilih Kategori!");
-        } else if(judul.equals("")||pengarang.equals("")||penerbit.equals("")||deskripsi.equals("")||stok.equals("")){
-            JOptionPane.showMessageDialog(null, "Semua Kolom Harus Terisi!");     
+        } else if (stok.equals("")) {
+            JOptionPane.showMessageDialog(null, "Isi Kolom Stok!");
         } else{
             try {
                 String query ="UPDATE buku SET id_buku = '"+lblid.getText()

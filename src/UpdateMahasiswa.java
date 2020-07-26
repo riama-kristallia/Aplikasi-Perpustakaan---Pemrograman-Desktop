@@ -1,7 +1,13 @@
+import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,15 +20,15 @@ public class UpdateMahasiswa extends javax.swing.JFrame {
         loadTampil();
         setFakultas();
         
-     /*   try {
-           BufferedImage beam = ImageIO.read(getClass().getResource("library.jpg"));
-             setIconImage(beam); 
+        try {
+            BufferedImage beam = ImageIO.read(getClass().getResource("library.png"));
+            setIconImage(beam); 
         } catch (IOException ex) {
             Logger.getLogger(splashscreen.class.getName()).log(Level.SEVERE, null, ex);
         }
        this.setTitle("Aplikasi Perpustakaan");
-        */
     }
+    
     private void setFakultas(){
         cbProdi.setEnabled(false);
         cbFakultas.addItem("Kedokteran");
@@ -43,11 +49,12 @@ public class UpdateMahasiswa extends javax.swing.JFrame {
     Connection conn = Koneksi.connectDB();
     private void loadTampil(){
         try {
-            String ID = session.getid();           
-            String sql = "SELECE * FROM mahasiswa where npm = '" + ID + "'";
-           
+            String id = session.getid();           
+            String query ="SELECT * FROM mahasiswa where npm = '"+ id +"'";
+            
             Statement stmt = conn.createStatement();
-            ResultSet res = stmt.executeQuery(sql);
+            ResultSet res = stmt.executeQuery(query);
+            
             while (res.next()) {
                 txtNPM.setText(res.getString(1));
                 txtNama.setText(res.getString(2));
@@ -84,7 +91,7 @@ public class UpdateMahasiswa extends javax.swing.JFrame {
                 txtNamaMouseClicked(evt);
             }
         });
-        jPanel1.add(txtNama, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 410, 40));
+        jPanel1.add(txtNama, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 410, 40));
 
         txtNPM.setText("NPM");
         txtNPM.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -92,7 +99,12 @@ public class UpdateMahasiswa extends javax.swing.JFrame {
                 txtNPMMouseClicked(evt);
             }
         });
-        jPanel1.add(txtNPM, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 410, 40));
+        txtNPM.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNPMKeyTyped(evt);
+            }
+        });
+        jPanel1.add(txtNPM, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 410, 40));
 
         btnUbah.setBackground(new java.awt.Color(0, 102, 204));
         btnUbah.setForeground(new java.awt.Color(255, 255, 255));
@@ -130,10 +142,10 @@ public class UpdateMahasiswa extends javax.swing.JFrame {
                 cbFakultasActionPerformed(evt);
             }
         });
-        jPanel1.add(cbFakultas, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, 100, 30));
+        jPanel1.add(cbFakultas, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, 140, 30));
 
         cbProdi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Prodi" }));
-        jPanel1.add(cbProdi, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 280, 100, 30));
+        jPanel1.add(cbProdi, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 280, 140, 30));
 
         jPanel2.setBackground(new java.awt.Color(0, 102, 204));
 
@@ -184,12 +196,19 @@ public class UpdateMahasiswa extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNPMMouseClicked
 
     private void btnUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahActionPerformed
-        String npm = txtNPM.getText();
-        String nama = txtNama.getText();
-        if(npm.equals("")||nama.equals("")){
-            JOptionPane.showMessageDialog(null,"Semua Kolom Harus Terisi!");
-        } else if(cbFakultas.getSelectedItem().equals("Fakultas")||cbProdi.getSelectedItem().equals("Prodi")){
-            JOptionPane.showMessageDialog(null,"Pilih Fakultas atau Prodi!");
+        String npm      = (String) txtNPM.getText();
+        String nama     = (String) txtNama.getText();
+        String fakultas = (String) cbFakultas.getSelectedItem();
+        String prodi    = (String) cbProdi.getSelectedItem();
+        
+        if (npm.equals("")) {
+            JOptionPane.showMessageDialog(null, "Isi Kolom NPM!");
+        } else if (nama.equals("")) {
+            JOptionPane.showMessageDialog(null, "Isi Kolom Nama!");
+        } else if (fakultas.equals("Fakultas")) {
+            JOptionPane.showMessageDialog(null, "Pilih Fakultas!");
+        } else if (prodi.equals("Prodi")) {
+            JOptionPane.showMessageDialog(null, "Pilih Prodi!");
         } else{
         try {
             String query ="UPDATE mahasiswa SET npm = '"+txtNPM.getText()
@@ -331,6 +350,18 @@ public class UpdateMahasiswa extends javax.swing.JFrame {
                 cbProdi.addItem("Fiskal");
             }
     }//GEN-LAST:event_cbFakultasActionPerformed
+
+    private void txtNPMKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNPMKeyTyped
+        char c = evt.getKeyChar();
+        if (! ((Character.isDigit(c) ||
+                (c == KeyEvent.VK_BACK_SPACE) ||
+                (c == KeyEvent.VK_DELETE))
+                )
+            )
+        {
+            evt.consume();
+        } 
+    }//GEN-LAST:event_txtNPMKeyTyped
 
     /**
      * @param args the command line arguments
