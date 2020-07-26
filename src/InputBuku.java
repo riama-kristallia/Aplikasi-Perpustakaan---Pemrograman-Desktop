@@ -1,8 +1,13 @@
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,18 +18,17 @@ public class InputBuku extends javax.swing.JFrame {
     public InputBuku(){
         initComponents();
         setKategori();
-    
-    /*    try {
-           BufferedImage beam = ImageIO.read(getClass().getResource("library.jpg"));
-             setIconImage(beam); 
+        
+        try {
+            BufferedImage beam = ImageIO.read(getClass().getResource("library.png"));
+            setIconImage(beam); 
         } catch (IOException ex) {
             Logger.getLogger(splashscreen.class.getName()).log(Level.SEVERE, null, ex);
         }
        this.setTitle("Input Data Buku");
-    */
-        }
+    }
+    
     private void setKategori(){
-        cbKategori.addItem("Kategori");
         cbKategori.addItem("Ilmu Kesehatan");
         cbKategori.addItem("Ilmu Sains dan Teknologi");
         cbKategori.addItem("Ilmu Sosial dan Humaniora");
@@ -84,7 +88,7 @@ public class InputBuku extends javax.swing.JFrame {
 
         txtDeskripsi.setColumns(20);
         txtDeskripsi.setRows(5);
-        txtDeskripsi.setText("\n\n   Deskripsi");
+        txtDeskripsi.setText("Deskripsi");
         txtDeskripsi.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtDeskripsiMouseClicked(evt);
@@ -203,52 +207,62 @@ public class InputBuku extends javax.swing.JFrame {
         String deskripsi    = (String) txtDeskripsi.getText();
         String stok         = (String) txtStok.getText();
 
-    if(kategori.equals("Kategori")){
-        JOptionPane.showMessageDialog(null, "Pilih Kategori!");
-     } else if(judul.equals("")||pengarang.equals("")||penerbit.equals("")||deskripsi.equals("")||stok.equals("")){
-         JOptionPane.showMessageDialog(null, "Semua Kolom Harus Terisi!");     
-     } else{
-         try{
-             String sql="SELECT * FROM buku order by id_buku desc";
-             Connection conn = Koneksi.connectDB();
-             Statement stm = conn.createStatement();
-             ResultSet res = stm.executeQuery(sql);
-             String no_id;
-             
-             if(res.next()){
-                 String no=res.getString("id_buku").substring(1);
-                 String id = ""+(Integer.parseInt(no)+1);
-                 String nol=null;
-                 
-                 if(id.length()==1){
-                    nol="000";
-                } else if(id.length()==2){
-                    nol="00";
-                } else if(id.length()==3){
-                    nol="0";
-                } else if(id.length()==4){
-                    nol="";
-                } no_id = "B"+nol+id; 
-              } else{
-                 no_id = "B0001"; 
-              }
-            try {
-                String query = "INSERT INTO buku VALUES "
-                        + "('" + no_id+"','"+txtJudul.getText() + "','" + txtPengarang.getText() 
-                        + "','" + txtPenerbit.getText() + "','" + cbKategori.getSelectedItem()  
-                        + "','" + txtDeskripsi.getText()+ "','" + txtStok.getText() + "')";
+        if (judul.equals("Judul")||judul.equals("")) {
+            JOptionPane.showMessageDialog(null, "Isi Kolom Judul!");
+        } else if (pengarang.equals("Pengarang")||pengarang.equals("")) {
+            JOptionPane.showMessageDialog(null, "Isi Kolom Pengarang!");
+        } else if (penerbit.equals("Penerbit")||penerbit.equals("")){
+            JOptionPane.showMessageDialog(null, "Isi Kolom Penerbit!");
+        } else if (deskripsi.equals("Deskripsi")||deskripsi.equals("")) {
+            JOptionPane.showMessageDialog(null, "Isi Kolom Deskripsi!");
+        } else if (kategori.equals("Kategori")) {
+            JOptionPane.showMessageDialog(null, "Pilih Kategori!");
+        } else if (stok.equals("Stok")) {
+            JOptionPane.showMessageDialog(null, "Inputan Stok Harus Berupa Angka!");
+        } else if (stok.equals("")) {
+            JOptionPane.showMessageDialog(null, "Isi Kolom Stok!");
+        } else{
+            try{
+                String sql="SELECT * FROM buku order by id_buku desc";
+                Connection conn = Koneksi.connectDB();
+                Statement stm = conn.createStatement();
+                ResultSet res = stm.executeQuery(sql);
+                String no_id;
 
-                PreparedStatement stmt = conn.prepareStatement(query);
-                stmt.execute();
-                JOptionPane.showMessageDialog(null, "Penyimpanan Data Berhasil");
-            } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
-            }
-        } catch(Exception b){
-        JOptionPane.showMessageDialog(null,b.getMessage());
-        } 
-         new DataBuku().setVisible(true);
-         dispose();
+                if(res.next()){
+                    String no=res.getString("id_buku").substring(1);
+                    String id = ""+(Integer.parseInt(no)+1);
+                    String nol=null;
+
+                    if(id.length()==1){
+                       nol="000";
+                   } else if(id.length()==2){
+                       nol="00";
+                   } else if(id.length()==3){
+                       nol="0";
+                   } else if(id.length()==4){
+                       nol="";
+                   } no_id = "B"+nol+id; 
+                 } else{
+                    no_id = "B0001"; 
+                 }
+               try {
+                   String query = "INSERT INTO buku VALUES "
+                           + "('" + no_id+"','"+txtJudul.getText() + "','" + txtPengarang.getText() 
+                           + "','" + txtPenerbit.getText() + "','" + cbKategori.getSelectedItem()  
+                           + "','" + txtDeskripsi.getText()+ "','" + txtStok.getText() + "')";
+
+                   PreparedStatement stmt = conn.prepareStatement(query);
+                   stmt.execute();
+                   JOptionPane.showMessageDialog(null, "Penyimpanan Data Berhasil");
+               } catch (Exception e) {
+               JOptionPane.showMessageDialog(this, e.getMessage());
+               }
+           } catch(Exception b){
+           JOptionPane.showMessageDialog(null,b.getMessage());
+           } 
+            new DataBuku().setVisible(true);
+            dispose();
         }
     }//GEN-LAST:event_btnSubmitActionPerformed
 

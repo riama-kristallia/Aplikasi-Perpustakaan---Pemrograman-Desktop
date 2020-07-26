@@ -5,7 +5,6 @@
  */
 
 
-
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
@@ -33,15 +32,14 @@ public class login extends javax.swing.JFrame {
      */
     public login(){
         initComponents();
-
-        
+   
         try {
-            BufferedImage beam = ImageIO.read(getClass().getResource("library.jpg"));
-             setIconImage(beam); 
+            BufferedImage beam = ImageIO.read(getClass().getResource("library.png"));
+            setIconImage(beam); 
         } catch (IOException ex) {
             Logger.getLogger(splashscreen.class.getName()).log(Level.SEVERE, null, ex);
         }
-       this.setTitle("Login");
+        this.setTitle("Login");
      }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -200,42 +198,30 @@ public class login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     Connection conn = Koneksi.connectDB();
     private void txtUsernameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUsernameMouseClicked
-            
-        // TODO add your handling code here:
-                 
+        // TODO add your handling code here:                
     }//GEN-LAST:event_txtUsernameMouseClicked
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-// TODO add your handling code here:
-        
-
-//        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
-        
- 
-            try{
-                        String sql = "SELECT * FROM login WHERE username='"+
-                                txtUsername.getText() +"'";
-                        Statement stmt = conn.createStatement();
-                        ResultSet rs = stmt.executeQuery(sql);
-
-                        while(rs.next()){
-                            String passfield = hashSHA256(rs.getString("salt")
-                                    + new String(txtPassword.getPassword()));
-                            if(passfield.equals(rs.getString("password"))){
-                                //JOptionPane.showMessageDialog(null, "login berhasil");
-                                new halamanUtama().setVisible(true);
-                                this.dispose();
-                            } else {
-                                JOptionPane.showMessageDialog(null, "login gagal");
-                            }
-                        }
-                    } catch (SQLException e){
-                        System.out.println(e.getMessage());
-                    }
-        
-
-
-        
+        try{
+            String sql = "SELECT * FROM login WHERE username='"+ txtUsername.getText() +"'";
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            
+            while(rs.next()){
+                String passfield = hashSHA256(rs.getString("salt")
+                        + new String(txtPassword.getPassword()));
+                if(passfield.equals(rs.getString("password"))){
+                    session ss = new session();
+                    ss.setuser(txtUsername.getText());
+                    new halamanUtama().setVisible(true);
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "login gagal");
+                }
+            }
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+        }      
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -251,16 +237,17 @@ System.exit(0);
     private void txtUsernameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsernameKeyTyped
         // TODO add your handling code here:
         txtUsername.addKeyListener(new KeyAdapter(){
-                    public void keyPressed(KeyEvent ke){
-                        String value = txtUsername.getText();
-                        int l = value.length();
-                        if(ke.getKeyChar() >= 'a' && ke.getKeyChar() <= 'z' | ke.getKeyChar() == KeyEvent.VK_BACK_SPACE ) {
-                            txtUsername.setEditable(true);
-                        }else{
-                            txtUsername.setEditable(false);
-                        }
-                    }
-                });
+            @Override
+            public void keyPressed(KeyEvent ke){
+                String value = txtUsername.getText();
+                int l = value.length();
+                if(ke.getKeyChar() >= 'a' && ke.getKeyChar() <= 'z' || ke.getKeyChar() == KeyEvent.VK_BACK_SPACE || ke.getKeyChar() == KeyEvent.VK_DELETE ) {
+                    txtUsername.setEditable(true);
+                }else{
+                    txtUsername.setEditable(false);
+                }
+            }
+        });
     }//GEN-LAST:event_txtUsernameKeyTyped
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
@@ -272,7 +259,7 @@ System.exit(0);
     }//GEN-LAST:event_btnResetActionPerformed
 
     public static void main(String args[]) {
-
+        
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -290,34 +277,27 @@ System.exit(0);
             java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
-        
-        
-
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new login().setVisible(true);
             }
         });
-        
-        
-
-    
     }
-            public String hashSHA256(String plainteks){
-            StringBuilder sb = new StringBuilder();
-            try{
-                MessageDigest md = MessageDigest.getInstance("SHA-256");
-                byte[] hashInBytes = md.digest(plainteks.getBytes(StandardCharsets.UTF_8));
+    
+    public String hashSHA256(String plainteks){
+        StringBuilder sb = new StringBuilder();
+        try{
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            byte[] hashInBytes = md.digest(plainteks.getBytes(StandardCharsets.UTF_8));
                 
-                for(byte b: hashInBytes){
-                    sb.append(String.format("%02x", b));
-                }
-                
-            } catch(Exception ex){
-                System.err.println(ex.getMessage());
+            for(byte b: hashInBytes){
+                sb.append(String.format("%02x", b));
             }
-            return sb.toString();
+        } catch(Exception ex){
+            System.err.println(ex.getMessage());
         }
+        return sb.toString();
+    }
             
             
             
