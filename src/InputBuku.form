@@ -141,7 +141,7 @@
                   <Properties>
                     <Property name="columns" type="int" value="20"/>
                     <Property name="rows" type="int" value="5"/>
-                    <Property name="text" type="java.lang.String" value="&#xa;&#xa;   Deskripsi"/>
+                    <Property name="text" type="java.lang.String" value="Deskripsi"/>
                   </Properties>
                   <Events>
                     <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtDeskripsiMouseClicked"/>
