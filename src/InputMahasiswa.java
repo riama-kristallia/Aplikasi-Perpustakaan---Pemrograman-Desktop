@@ -1,5 +1,11 @@
+import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
 /**
@@ -11,14 +17,15 @@ public class InputMahasiswa extends javax.swing.JFrame {
         initComponents();
         setFakultas();
         
- /*       try {
-             BufferedImage beam = ImageIO.read(getClass().getResource("library.jpg"));
-             setIconImage(beam); 
+        try {
+            BufferedImage beam = ImageIO.read(getClass().getResource("library.png"));
+            setIconImage(beam); 
         } catch (IOException ex) {
             Logger.getLogger(splashscreen.class.getName()).log(Level.SEVERE, null, ex);
         }
-       this.setTitle("Input Data Mahasiswa");*/
+       this.setTitle("Input Data Mahasiswa");
     } 
+    
     private void setFakultas(){
         cbProdi.setEnabled(false);
         cbFakultas.addItem("Kedokteran");
@@ -35,7 +42,7 @@ public class InputMahasiswa extends javax.swing.JFrame {
         cbFakultas.addItem("Psikologi");
         cbFakultas.addItem("Ilmu Sosial dan Ilmu Politik");
         cbFakultas.addItem("Ilmu Administrasi");
-}
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -62,6 +69,11 @@ public class InputMahasiswa extends javax.swing.JFrame {
         txtNPM.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtNPMMouseClicked(evt);
+            }
+        });
+        txtNPM.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNPMKeyTyped(evt);
             }
         });
 
@@ -142,15 +154,14 @@ public class InputMahasiswa extends javax.swing.JFrame {
                     .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, 515, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(cbFakultas, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(cbProdi, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(btnSubmit)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnCancel)))
+                                .addComponent(btnCancel))
+                            .addComponent(cbProdi, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnKembali, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnKembali, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbFakultas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(49, Short.MAX_VALUE))
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -163,9 +174,9 @@ public class InputMahasiswa extends javax.swing.JFrame {
                 .addComponent(txtNPM, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23)
                 .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(24, 24, 24)
                 .addComponent(cbFakultas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(cbProdi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -300,13 +311,20 @@ public class InputMahasiswa extends javax.swing.JFrame {
             }      
     }//GEN-LAST:event_cbFakultasActionPerformed
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
-        String npm = txtNPM.getText();
-        String nama = txtNama.getText();
-        if(npm.equals("")||nama.equals("")){
-                JOptionPane.showMessageDialog(null,"Semua Kolom Harus Terisi!");
-        } else if(cbFakultas.getSelectedItem().equals("Fakultas")||cbProdi.getSelectedItem().equals("Prodi")){
-                JOptionPane.showMessageDialog(null,"Pilih Fakultas atau Prodi!");
-            } else{
+        String npm      = (String) txtNPM.getText();
+        String nama     = (String) txtNama.getText();
+        String fakultas = (String) cbFakultas.getSelectedItem();
+        String prodi    = (String) cbProdi.getSelectedItem();
+        
+        if (npm.equals("NPM")||npm.equals("")) {
+            JOptionPane.showMessageDialog(null, "Isi Kolom NPM!");
+        } else if (nama.equals("Nama")||nama.equals("")) {
+            JOptionPane.showMessageDialog(null, "Isi Kolom Nama!");
+        } else if (fakultas.equals("Fakultas")) {
+            JOptionPane.showMessageDialog(null, "Pilih Fakultas!");
+        } else if (prodi.equals("Prodi")) {
+            JOptionPane.showMessageDialog(null, "Pilih Prodi!");
+        } else{
             try {
                 String sql1 = "INSERT INTO mahasiswa"
                         + " VALUES ('"+txtNPM.getText()+"','" + txtNama.getText() + "','" + cbFakultas.getSelectedItem()
@@ -315,8 +333,8 @@ public class InputMahasiswa extends javax.swing.JFrame {
                 PreparedStatement pdt = conn.prepareStatement(sql1);
                 pdt.execute();
                JOptionPane.showMessageDialog(null, "Penyimpanan Data Berhasil");
-            new DataMahasiswa().setVisible(true);
-            dispose();
+                new DataMahasiswa().setVisible(true);
+                dispose();
             } catch (Exception b) {
                 JOptionPane.showMessageDialog(this, b.getMessage());
             }
@@ -336,6 +354,18 @@ public class InputMahasiswa extends javax.swing.JFrame {
         new DataMahasiswa().setVisible(true);
         dispose();
     }//GEN-LAST:event_btnCancelActionPerformed
+
+    private void txtNPMKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNPMKeyTyped
+        char c = evt.getKeyChar();
+        if (! ((Character.isDigit(c) ||
+                (c == KeyEvent.VK_BACK_SPACE) ||
+                (c == KeyEvent.VK_DELETE))
+                )
+            )
+        {
+            evt.consume();
+        } 
+    }//GEN-LAST:event_txtNPMKeyTyped
 
     /**
      * @param args the command line arguments

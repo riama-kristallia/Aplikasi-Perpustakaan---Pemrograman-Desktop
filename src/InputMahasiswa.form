@@ -57,19 +57,17 @@
                       <Component id="txtNama" alignment="0" min="-2" pref="515" max="-2" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="cbFakultas" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="cbProdi" alignment="0" min="-2" pref="108" max="-2" attributes="0"/>
-                              </Group>
                               <Group type="102" attributes="0">
                                   <Component id="btnSubmit" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="btnCancel" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <Component id="cbProdi" alignment="0" min="-2" pref="149" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="btnKembali" min="-2" pref="129" max="-2" attributes="0"/>
                       </Group>
+                      <Component id="cbFakultas" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace pref="49" max="32767" attributes="0"/>
               </Group>
@@ -85,9 +83,9 @@
                   <Component id="txtNPM" min="-2" pref="46" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                   <Component id="txtNama" min="-2" pref="46" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                   <Component id="cbFakultas" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <Component id="cbProdi" min="-2" max="-2" attributes="0"/>
@@ -111,6 +109,7 @@
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtNPMMouseClicked"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNPMKeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JComboBox" name="cbFakultas">
