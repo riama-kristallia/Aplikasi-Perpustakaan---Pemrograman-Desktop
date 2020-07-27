@@ -64,8 +64,6 @@ Aplikasi Perpustakaan membutuhkan java dengan versi minimum 1.8.0 dan maksimum 1
   Gambar 3
 </p>
 
-7. Membuka phpMyAdmin, memilih pilihan *import* untuk menambahkan *database*. Kemudian *import* perpustakaan.sql dari direktori db.  
-
 ## **Manual Penggunaan**
 Setelah melakukan instalasi, anda dapat langsung menggunakan aplikasi dengan nama "Perpustakaan".<br>
 <p align="center">
