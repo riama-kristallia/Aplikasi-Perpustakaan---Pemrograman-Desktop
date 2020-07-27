@@ -41,7 +41,7 @@ Aplikasi Perpustakaan membutuhkan java dengan versi minimum 1.8.0 dan maksimum 1
 2. Masuk ke direktori yang berisi file instalasi.
 3. Apabila anda menggunakan sistem operasi Linux, jalankan perintah berikut :
   ```code
-  chmod +x 
+  chmod +x perpustakaan_unix_1_0_0.sh
   ./perpustakaan_unix_1_0_0.sh
   ```
   Apabila anda menggunakan sistem operasi Windows, anda dapat langsung melakukan *Run Application* dengan _double click_ pada _executable file_ perpustakaan_windows-x64_1_0_0.exe.
