@@ -21,15 +21,14 @@ SET time_zone = "+00:00";
 --
 -- Dumping database structure for toko
 --
-CREATE DATABASE IF NOT EXIST `perpustakaan`;
-USE `perpustakan`;
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `buku`
 --
-
+CREATE DATABASE IF NOT EXISTS `perpustakan` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
+USE `perpustakan`;
 CREATE TABLE `buku` (
   `id_buku` varchar(30) NOT NULL,
   `judul` varchar(100) NOT NULL,
