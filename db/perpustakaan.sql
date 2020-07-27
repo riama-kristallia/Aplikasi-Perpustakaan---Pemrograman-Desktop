@@ -19,8 +19,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `perpustakaan`
+-- Dumping database structure for toko
 --
+CREATE DATABASE IF NOT EXIST `perpustakaan`;
+USE `perpustakan`;
 
 -- --------------------------------------------------------
 

@@ -1,6 +1,8 @@
 
+import java.io.FileReader;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -16,7 +18,12 @@ public class Koneksi {
     public static com.mysql.jdbc.Connection conn;
     public static void main(String args[]) {
         try {
-            String url = "jdbc:mysql://localhost/perpustakaan";
+            FileReader reader = new FileReader("conf.properties");
+            Properties p = new Properties();
+            p.load(reader);
+            String ip = p.getProperty("ip");
+            String port = p.getProperty("port");
+            String url = "jdbc:mysql://"+ip+":"+port+"/perpustakaan";
             String user = "root";
             String pass = "";
             conn = (com.mysql.jdbc.Connection) DriverManager.getConnection(url,user,pass);
